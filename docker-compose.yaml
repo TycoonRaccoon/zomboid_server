@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  zomboid-server:
+    build: .
+    container_name: zomboid-server
+    restart: 'no'
+    environment:
+      - 'SERVER_NAME=MyZomboidServer'
+      - 'SERVER_PASSWORD=pass'
+    ports:
+      - target: 16262
+        published: 16262
+        protocol: udp
+      - target: 16261
+        published: 16261
+        protocol: udp
+      - target: 27015
+        published: 27015
+        protocol: tcp
+    volumes:
+      - ./config:/home/steam/Zomboid/
